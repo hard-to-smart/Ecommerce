@@ -6,6 +6,10 @@ import { fetchAPI } from "../loaders/AllLoader";
 import { getBlogs, getFeaturedProducts, getProducts } from "../constants/apiUrls";
 import Blogs from "../pages/Blogs";
 import Cart from "../pages/Cart";
+import SingleBlog from "../pages/SingleBlog";
+import SingleProduct from "../pages/SingleProduct";
+import Spinner from "../components/Spinner";
+
 const AllRoutes = createBrowserRouter([
   {
     path: "/",
@@ -18,15 +22,24 @@ const AllRoutes = createBrowserRouter([
               }        
             },
         {
-            path: "/products",
-            element: <Products/>,
-            loader: ()=>{
-            return fetchAPI(getProducts)
+            path: "product",
+            children:[
+            {
+              index:true,
+              element: <Products/>,
+              loader: ()=>{
+                return fetchAPI(getProducts)
+                }
+            },
+            {
+              path:':id',
+              element: <SingleProduct/>,
             }
+          ],
             
         },
         {
-          path: "/blog",
+          path: "blog",
           children:[
             {
               index:true,
@@ -35,6 +48,13 @@ const AllRoutes = createBrowserRouter([
                 return fetchAPI(getBlogs)
                 }
             },
+            {
+              path:':id',
+              element: <SingleBlog/>,
+              loader:()=>{
+                return fetchAPI(getBlogs)
+                }
+            }
             
           ]
         },
@@ -47,5 +67,5 @@ const AllRoutes = createBrowserRouter([
 ]);
 
 export const Routes=()=>{
-    return <RouterProvider router={AllRoutes}> </RouterProvider>
+    return <RouterProvider router={AllRoutes} fallbackElement={<Spinner/>}> </RouterProvider>
 } 

@@ -6,6 +6,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import {useState} from "react"
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, addToCart, updateQuantity}) => {
   const [productAddedToCart, setProductAddedToCart] = useState(false);
@@ -21,14 +22,16 @@ const ProductCard = ({ product, addToCart, updateQuantity}) => {
 
   return (
     <Card className=" w-[250px] h-[450px] bg-teal-100 border-2 border-gray-200 rounded-lg shadow-md">
-      <CardHeader floated={false} color="blue-gray">
-        <img src={product.image} className="h-fit w-fit object-cover " />
+    <Link to={`/product/${product.id}`} key={product.id} state={{ product }}>
+      <CardHeader floated={false} className="flex justify-center">
+        <img src={product.image} className="h-[200px] w-[150px] object-contain " />
       </CardHeader>
-      <CardBody className="flex flex-row justify-between px-4">
-        <p>{product.title}</p>
-        <p>{product.price}</p>
+      <CardBody className="flex flex-col gap-2">
+        <p>{product.title.substring(0,50)}</p>
+        <p>Price: USD {product.price}</p>
       </CardBody>
-      <CardFooter>
+      </Link>
+      <CardFooter className="mt-auto">
         {
           productAddedToCart ? (
             <div className="gap-2 flex">

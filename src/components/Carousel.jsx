@@ -2,7 +2,7 @@ import { Carousel, IconButton } from "@material-tailwind/react";
 
 export const Banner = () => {
   return(
-    <Carousel
+    <Carousel className="h-[500px]"
       prevArrow={({ handlePrev }) => (
         <IconButton
           variant="text"
