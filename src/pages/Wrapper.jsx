@@ -7,7 +7,7 @@ const Wrapper = () => {
   return (
     <>
     <Header/>
-    <Outlet />
+    <Outlet/>
     <Footer/>
   </>
   )
