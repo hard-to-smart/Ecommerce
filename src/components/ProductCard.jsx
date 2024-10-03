@@ -3,32 +3,47 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  Typography,
   Button,
 } from "@material-tailwind/react";
+import {useState} from "react"
 
-const ProductCard = () => {
+const ProductCard = ({ product, addToCart, updateQuantity}) => {
+  const [productAddedToCart, setProductAddedToCart] = useState(false);
+  let type=null;
+  const handleAddToCart=()=>{
+    addToCart(product)
+    setProductAddedToCart((prev)=>!prev)
+  }
+  const handleUpdateCart=(product, type)=>{
+    updateQuantity(product, type)
+  }
+
   return (
-    <Card className="w-fit bg-teal-100 border-2 border-gray-200 rounded-sm shadow-md">
-      <CardHeader>
-        <img
-          src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
-          alt="card-image"
-          className="h-[200px] w-[200px] object-cover p-4"
-        />
+    <Card className=" w-[250px] h-[450px] bg-teal-100 border-2 border-gray-200 rounded-lg shadow-md">
+      <CardHeader floated={false} color="blue-gray">
+        <img src={product.image} className="h-fit w-fit object-cover " />
       </CardHeader>
       <CardBody className="flex flex-row justify-between px-4">
-        <p>Name</p>
-        <p>Price</p>
+        <p>{product.title}</p>
+        <p>{product.price}</p>
       </CardBody>
-      <CardFooter className="p-4">
-        <Button
-          className="w-full rounded-md bg-yellow-300 py-2 px-4 text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-orange-600 focus:shadow-none active:bg-yellow-500 hover:bg-yellow-500 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button"
-        >
-          Button
+      <CardFooter>
+        {
+          productAddedToCart ? (
+            <>
+            <button classNae='text-xl border-2 border-white px-2 rounded-sm' onClick={handleUpdateCart(product, 'sub')} >- </button>
+            <span> {product.quantity} </span>
+            <button className='text-xl border-2 border-white px-2 rounded-sm' onClick={handleUpdateCart(product, 'add')} >+</button>
+            </>
+          ) :
+        (
+          <Button
+          className="w-full rounded-md bg-yellow-300 py-2 px-4 bottom-0 text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-yellow-600 focus:shadow-none active:bg-yellow-600 hover:bg-yellow-600 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button" onClick={handleAddToCart}>
+          Add to Cart
         </Button>
-      </CardFooter>
+        )}
+      </CardFooter >
     </Card>
   );
 };

@@ -1,12 +1,12 @@
 import Header from "./components/Header";
-import Wrapper from "./pages/Wrapper";
+import { CartContext, CartContextProvider } from "./contexts/CartContext";
 import { Routes } from "./routes/AllRoutes";
 
 function App() {
   return (
-   <Routes>
-    <Wrapper/>
-   </Routes>
+    <CartContextProvider>
+   <Routes/>
+   </CartContextProvider>
   );
 }
 
