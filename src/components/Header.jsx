@@ -8,9 +8,9 @@ import { FaCircleUser } from "react-icons/fa6";
 const Header = () => {
   return (
     <header className='header flex justify-between items-center bg-slate-800 px-[10px] pt-2 text-xl text-stone-100 shadow-3xl '>
-        <div>
+        <NavLink to='/'>
           <img src={logo} className='h-16 w-full'/>
-        </div>
+          </NavLink>
         <ul className='flex flex-row gap-6'>
             <NavLink to="/products"> Products</NavLink>
             <NavLink> Orders</NavLink> 
