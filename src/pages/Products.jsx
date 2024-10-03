@@ -5,14 +5,14 @@ import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 const Products = () => {
   const productsData = useLoaderData()
-  const { cartProduct, addToCart } = useContext(CartContext)
+  const { cartProduct, addToCart, updateQuantity } = useContext(CartContext)
   console.log(cartProduct)
   return (
     <section id='products' >
       <div className='flex flex-wrap gap-2 justify-center'>
       {
         productsData.map((product)=>{
-         return <ProductCard key={product.id} product={product} addToCart={addToCart} cartProduct={cartProduct}/>
+         return <ProductCard key={product.id} product={product} addToCart={addToCart} cartProduct={cartProduct} updateQuantity={updateQuantity}/>
         })
       }
       </div>

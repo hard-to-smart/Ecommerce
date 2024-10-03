@@ -5,6 +5,7 @@ import Products from "../pages/Products";
 import { fetchAPI } from "../loaders/AllLoader";
 import { getBlogs, getFeaturedProducts, getProducts } from "../constants/apiUrls";
 import Blogs from "../pages/Blogs";
+import Cart from "../pages/Cart";
 const AllRoutes = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +37,10 @@ const AllRoutes = createBrowserRouter([
             },
             
           ]
+        },
+        {
+          path:'/cart',
+          element:<Cart/>
         }
     ],
   },

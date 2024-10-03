@@ -23,9 +23,11 @@ export const CartContextProvider = ({children})=>{
             )
         }
         setCardProduct(updatedProduct);
-
     }
-
-
+    // st totalPriceHandler = () => {
+    //     const total = productsInCart.reduce((acc, cur) => (cur.price * cur.quantity) + acc, 0);
+    //     setTotalPrice(total)
+    // }
+    
     return <CartContext.Provider value={{ cartProduct, addToCart, updateQuantity }}>{children}</CartContext.Provider>
 }

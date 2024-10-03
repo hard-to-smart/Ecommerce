@@ -21,7 +21,7 @@ const Header = () => {
         </ul>
         <div className='flex flex-row gap-6'>
             <NavLink><FaHeart/></NavLink>
-            <NavLink><div className="relative flex"><FaShoppingCart/><div className="w-4 h-4 right-[-10px] top-[-8px] rounded-[50%] bg-amber-700 absolute text-sm flex justify-center text-red-800">{cartProduct.length}</div></div></NavLink>
+            <NavLink to='/cart'><div className="relative flex"><FaShoppingCart/><div className="w-4 h-4 right-[-10px] top-[-8px] rounded-[50%] bg-amber-700 absolute text-sm flex justify-center text-red-800">{cartProduct.length}</div></div></NavLink>
             <NavLink><FaCircleUser /></NavLink>
             </div>
     </header>
