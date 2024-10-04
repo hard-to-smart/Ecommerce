@@ -19,15 +19,11 @@ export const CartContextProvider = ({children})=>{
         }
         else if(type==='sub'){
             updatedProduct=cartProduct.map((singleproduct)=>
-                singleproduct.id===product.id ? {...singleproduct, quantity: singleproduct.quantity -1}: singleproduct
+                singleproduct.id===product.id ? {...singleproduct, quantity: singleproduct.quantity -1}: Math.max(singleproduct.quantity -1, 0)
             )
         }
         setCardProduct(updatedProduct);
     }
-    // st totalPriceHandler = () => {
-    //     const total = productsInCart.reduce((acc, cur) => (cur.price * cur.quantity) + acc, 0);
-    //     setTotalPrice(total)
-    // }
     
     return <CartContext.Provider value={{ cartProduct, addToCart, updateQuantity }}>{children}</CartContext.Provider>
 }

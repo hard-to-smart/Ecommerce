@@ -15,7 +15,12 @@ const Cart = () => {
     <section id='ordertotal' className='flex items-center'>
         <Card>
         <CardHeader>
-            
+          {/* <div>
+        // st totalPriceHandler = () => {
+    //     const total = productsInCart.reduce((acc, cur) => (cur.price * cur.quantity) + acc, 0);
+    //     setTotalPrice(total)
+    // }
+    </div> */}
         </CardHeader>
         </Card>
 

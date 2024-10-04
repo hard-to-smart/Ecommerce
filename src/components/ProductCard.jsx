@@ -5,11 +5,27 @@ import {
   CardFooter,
   Button,
 } from "@material-tailwind/react";
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
 
-const ProductCard = ({ product, addToCart, updateQuantity}) => {
+const ProductCard = ({ product}) => {
+  const { cartProduct, addToCart, updateQuantity } = useContext(CartContext)
   const [productAddedToCart, setProductAddedToCart] = useState(false);
+  const [productQuantity, setProductQuantity] = useState(0);
+
+  const getUpdatedQuantity = () => {
+    const productInCart = cartProduct.find((item) => item.id === product.id);
+    return productInCart ? productInCart.quantity : 0;
+  };
+
+  useEffect(() => {
+    const quantity = getUpdatedQuantity();
+    setProductQuantity(quantity);
+    setProductAddedToCart(quantity > 0); 
+  }, [cartProduct, product]);
+
   let type=null;
   const handleAddToCart=()=>{
     addToCart(product)
@@ -18,7 +34,7 @@ const ProductCard = ({ product, addToCart, updateQuantity}) => {
   const handleUpdateCart=(product, type)=>{
     updateQuantity(product, type)
   }
-
+  
 
   return (
     <Card className=" w-[250px] h-[450px] bg-teal-100 border-2 border-gray-200 rounded-lg shadow-md">
@@ -34,15 +50,10 @@ const ProductCard = ({ product, addToCart, updateQuantity}) => {
       <CardFooter className="mt-auto">
         {
           productAddedToCart ? (
-            <div className="gap-2 flex">
             <div className="flex flex-row justify-center gap-4">
             <button className='text-xl border-2 border-white px-2 rounded-sm' onClick={()=>handleUpdateCart(product, 'sub')} >- </button>
-            <span> {product.quantity} </span>
+            <span> {productQuantity}</span>
             <button className='text-xl border-2 border-white px-2 rounded-sm' onClick={()=>handleUpdateCart(product, 'add')} >+</button>
-            </div>
-            <Button
-          className="w-full rounded-md bg-red-300 py-2 px-4 bottom-0 text-center text-sm text-black transition-all shadow-md hover:shadow-lg focus:bg-red-600 focus:shadow-none active:bg-red-600 hover:bg-red-600 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          >Delete</Button>
             </div>
           ) :
         (
