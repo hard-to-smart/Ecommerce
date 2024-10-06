@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
-import { Link } from "react-router-dom";
-
+import { Link, useSearchParams } from "react-router-dom";
 const Pagination = ({ blogs }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 10;
   const totalPages = Math.ceil(blogs.length / 10);
@@ -14,7 +14,16 @@ const Pagination = ({ blogs }) => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+    setSearchParams({page: pageNumber})
   };
+  // this use effect condition only runs when search params is updated, i.e. page is changed and 
+// and updates the currentPage only when the values dont match. i.e. in case of back navigation
+    useEffect(() => {
+      const pageFromParams = parseInt(searchParams.get("page"), 10) || 1;
+       if (pageFromParams !== currentPage && pageFromParams <= totalPages) {
+      setCurrentPage(pageFromParams);
+    }
+    }, [searchParams, totalPages]);
 
   const pageButtons = ()=>{
     console.log("page buttons function called")

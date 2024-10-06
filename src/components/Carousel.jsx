@@ -1,15 +1,17 @@
 import { Carousel, IconButton } from "@material-tailwind/react";
-
+import banner1 from "../assets/banner1.jpg"
+import banner2 from "../assets/banner2.jpg"
+import banner3 from "../assets/banner3.jpg"
 export const Banner = () => {
   return(
     <Carousel className="h-[500px]"
       prevArrow={({ handlePrev }) => (
         <IconButton
           variant="text"
-          color="white"
           size="lg"
+          color="pink"
           onClick={handlePrev}
-          className="!absolute top-2/4 left-4 -translate-y-2/4 "
+          className="!absolute top-2/4 left-4 -translate-y-2/4 ring-2 ring-pink-50 "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +19,7 @@ export const Banner = () => {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="h-6 w-6"
+            className="h-6 w-6 "
           >
             <path
               strokeLinecap="round"
@@ -30,10 +32,10 @@ export const Banner = () => {
       nextArrow={({ handleNext }) => (
         <IconButton
           variant="text"
-          color="white"
+          color="pink"
           size="lg"
           onClick={handleNext}
-          className="!absolute top-2/4 !right-4 -translate-y-2/4"
+          className="!absolute top-2/4 !right-4 -translate-y-2/4 ring-2 ring-pink-50 "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,17 +55,17 @@ export const Banner = () => {
       )}
     >
       <img
-        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+        src={banner1}
         alt="image 1"
         className="h-full w-full object-cover"
       />
       <img
-        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+        src={banner2}
         alt="image 2"
         className="h-full w-full object-cover"
       />
       <img
-        src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
+        src={banner3}
         alt="image 3"
         className="h-full w-full object-cover"
       />

@@ -23,7 +23,6 @@ const Cart = () => {
     </div> */}
         </CardHeader>
         </Card>
-
     </section>
     </div>
   )

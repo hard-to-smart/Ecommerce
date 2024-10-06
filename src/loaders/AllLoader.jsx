@@ -13,11 +13,12 @@ export const fetchAPI= async(url) => {
     }
 }
 
-export const fetchCurrencyRate = async(countryrate)=>{
+export const fetchCurrencyRate = async(url) => {
     try{
-        const url = URL(getConversionRate + countryrate)
         const response = await axios.get(url);
-        return response.data
+        console.log(response.data.conversion_rates)
+        return response.data.conversion_rates
+        
     }
     catch(error){
         console.log(error)
