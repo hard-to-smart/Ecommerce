@@ -1,10 +1,13 @@
 import { Card, CardBody, CardFooter, CardHeader, Typography } from '@material-tailwind/react';
+import { useContext } from 'react';
+import { CurrencyContext } from '../contexts/CurrencyContext';
 
 const Bill = ({ cartProduct }) => {
+  const {currentCurrencyRate, currencyConversion} = useContext(CurrencyContext);
 
   const totalPriceCalculator = () => {
     const total = cartProduct.reduce(
-      (accumulator, product) => (product.price * product.quantity) + accumulator, 0 );
+      (accumulator, product) => (Number(product.price * currencyConversion[currentCurrencyRate]).toFixed(2) * product.quantity) + accumulator, 0 );
     return total;
   };
 
@@ -22,7 +25,7 @@ const Bill = ({ cartProduct }) => {
               <div className="flex flex-col gap-2" key={index}>
                 <p className="font-semibold flex-wrap">{productInCart.title}</p>
                 <p>Quantity: {productInCart.quantity}</p>
-                <p>Price: {productInCart.quantity * productInCart.price}</p>
+                <p>Price: {Number(productInCart.price * currencyConversion[currentCurrencyRate]).toFixed(2) * productInCart.quantity}</p>
                 <hr />
               </div>
             ))}
