@@ -1,14 +1,14 @@
-import { Card, CardBody, CardHeader, Typography } from '@material-tailwind/react';
-import { useLocation, useParams, Navigate } from 'react-router-dom';
+import { Card } from '@material-tailwind/react';
+import { useLocation } from 'react-router-dom';
 
 const SingleBlog = () => {
+<<<<<<< HEAD
   // const { id } = useParams();
+=======
+>>>>>>> e9cc8d19d4007dfa84c2be8d7af10119fbadd9ca
   const location = useLocation();
   const blog = location.state?.blog;
-  
-  if (!blog) {
-    return <Navigate to="/blog" />;
-  }
+
 
   return (
     <div id='single-blog' className='flex justify-center items-center'>

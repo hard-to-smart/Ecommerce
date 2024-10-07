@@ -2,8 +2,8 @@ import {createBrowserRouter,RouterProvider } from "react-router-dom";
 import Wrapper from "../pages/Wrapper";
 import Home from "../pages/Home";
 import Products from "../pages/Products";
-import { fetchAPI } from "../loaders/AllLoader";
-import { getBlogs, getFeaturedProducts, getProducts } from "../constants/apiUrls";
+import { fetchAPI, fetchCurrencyRate } from "../loaders/AllLoader";
+import { getBlogs, getConversionRate, getFeaturedProducts, getProducts } from "../constants/apiUrls";
 import Blogs from "../pages/Blogs";
 import Cart from "../pages/Cart";
 import SingleBlog from "../pages/SingleBlog";
@@ -17,9 +17,9 @@ const AllRoutes = createBrowserRouter([
     children: [
         {   index: true,
             element: <Home/>,
-            loader: ()=>{
-              return fetchAPI(getFeaturedProducts)
-              }        
+            loader: async () =>
+               await Promise.all([fetchAPI(getFeaturedProducts), fetchCurrencyRate(getConversionRate)])
+                   
             },
         {
             path: "product",

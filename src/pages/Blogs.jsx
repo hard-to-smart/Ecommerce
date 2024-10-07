@@ -4,6 +4,7 @@ import BlogCard from '../components/BlogCard'
 import Pagination from '../components/Pagination'
 
 const Blogs = () => {
+  
   const blogsData = useLoaderData()
   console.log("on blog", blogsData)
   return (

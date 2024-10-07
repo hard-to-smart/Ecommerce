@@ -9,8 +9,10 @@ import {useEffect, useState} from "react"
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
+import { CurrencyContext } from "../contexts/CurrencyContext";
 
 const ProductCard = ({ product}) => {
+  const {currentCurrencyRate} = useContext(CurrencyContext);
   const { cartProduct, addToCart, updateQuantity } = useContext(CartContext)
   const [productAddedToCart, setProductAddedToCart] = useState(false);
   const [productQuantity, setProductQuantity] = useState(0);
@@ -37,17 +39,18 @@ const ProductCard = ({ product}) => {
   const handleUpdateCart=(product, type)=>{
     updateQuantity(product, type)
   }
-  
+  const {currencyConversion} = useContext(CurrencyContext);
+  console.log(currencyConversion)
 
   return (
     <Card className=" w-[250px] h-[450px] bg-teal-100 border-2 border-gray-200 rounded-lg shadow-md">
-    <Link to={`/product/${product.id}`} key={product.id} state={{ product }}>
+    <Link to={`/product/${product.id}`} key={product.id} state={{ product}}>
       <CardHeader floated={false} className="flex justify-center">
         <img src={product.image} className="h-[200px] w-[150px] object-contain " />
       </CardHeader>
       <CardBody className="flex flex-col gap-2">
         <p>{product.title.substring(0,50)}</p>
-        <p>Price: USD {product.price}</p>
+        <p>Price: {currentCurrencyRate} {Number(product.price * currencyConversion[currentCurrencyRate]).toFixed(2)}</p>
       </CardBody>
       </Link>
       <CardFooter className="mt-auto">
