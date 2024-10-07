@@ -21,16 +21,19 @@ const ProductCard = ({ product}) => {
   };
 
   useEffect(() => {
-    const quantity = getUpdatedQuantity();
+
+    const quantity = getUpdatedQuantity();    
     setProductQuantity(quantity);
-    setProductAddedToCart(quantity > 0); 
+    setProductAddedToCart(quantity>0);
   }, [cartProduct, product]);
 
   let type=null;
+  
   const handleAddToCart=()=>{
     addToCart(product)
     setProductAddedToCart((prev)=>!prev)
   }
+
   const handleUpdateCart=(product, type)=>{
     updateQuantity(product, type)
   }

@@ -6,7 +6,7 @@ import {
 
 const BlogCard = ({blog}) => {
   return(
-        <Card className="w-[250px] h-[200px] overflow-clip pb-2 bg-teal-100">
+        <Card className="w-[250px] h-[250px] overflow-clip pb-2 bg-teal-100">
           <CardBody>
             <Typography variant="h4" color="blue-gray" className="text-lg text-gray">
               {blog.title}

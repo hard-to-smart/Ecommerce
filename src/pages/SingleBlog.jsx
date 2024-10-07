@@ -2,7 +2,7 @@ import { Card, CardBody, CardHeader, Typography } from '@material-tailwind/react
 import { useLocation, useParams, Navigate } from 'react-router-dom';
 
 const SingleBlog = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const location = useLocation();
   const blog = location.state?.blog;
   

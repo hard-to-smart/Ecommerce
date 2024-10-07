@@ -4,7 +4,7 @@ import SingleProductCard from "../components/SingleProductCard";
 
 const SingleProduct = () => {
 
-  const { id } = useParams();
+  // const { id } = useParams();
   const location = useLocation();
   const product = location.state?.product;
 console.log(product);

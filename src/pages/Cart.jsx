@@ -1,30 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
-import { Card, CardHeader } from '@material-tailwind/react';
+import noItems from '../assets/empty-cart.png'
+import Bill from '../components/Bill';
 const Cart = () => {
     const {cartProduct} = useContext(CartContext);
-    console.log(cartProduct[0])
-
+    useEffect(()=> localStorage.setItem('productsInCart', JSON.stringify(cartProduct)), [cartProduct])
+    
   return (
-    <div>
+    <div className='flex flex-row justify-between'>
     <section id='addedCarts' className='flex flex-wrap justify-center'>
-       { cartProduct.map((product)=> <ProductCard key={product.id} product={product}/>)}
+       {cartProduct.length>0? cartProduct.map((product)=> <ProductCard key={product.id} product={product}/>):
+       <img src={noItems}/> }
     </section>
-    <section id='ordertotal' className='flex items-center'>
-        <Card>
-        <CardHeader>
-          {/* <div>
-        // st totalPriceHandler = () => {
-    //     const total = productsInCart.reduce((acc, cur) => (cur.price * cur.quantity) + acc, 0);
-    //     setTotalPrice(total)
-    // }
-    </div> */}
-        </CardHeader>
-        </Card>
-
-    </section>
+    { cartProduct.length>0 &&
+      <Bill cartProduct={cartProduct}/>
+    }
     </div>
   )
 }
